@@ -37,6 +37,9 @@
 
     <!-- Page loading styles -->
     <style>
+      html {
+       scroll-behavior: smooth;
+      }
       .page-loading {
         position: fixed;
         top: 0;
@@ -128,11 +131,24 @@
     <script>
       (function () {
         window.onload = function () {
-          const preloader = document.querySelector('.page-loading')
-          preloader.classList.remove('active')
+          // Preloader functionality
+          const preloader = document.querySelector('.page-loading');
+          preloader.classList.remove('active');
           setTimeout(function () {
-            preloader.remove()
-          }, 1500)
+            preloader.remove();
+          }, 1500);
+    
+          // Smooth scroll to top functionality
+          const scrollToTopButton = document.querySelector('#smoothScrollToTop'); // Ensure your button has this ID
+          if (scrollToTopButton) {
+            scrollToTopButton.addEventListener('click', function(e) {
+              e.preventDefault();
+              window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+              });
+            });
+          }
         }
       })()
     </script>
@@ -540,7 +556,7 @@
           <!-- More button -->
           <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center gap-3 gap-sm-4 pt-4 pb-3 py-md-5 my-1 my-sm-3 my-md-0 mt-xl-3 mb-xl-4">
             <div class="fs-xl">And many more...</div>
-            <a href="#" class="btn btn-lg btn-outline-primary rounded-pill">Explore all use cases</a>
+            <a href="#" class="btn btn-lg btn-outline-primary rounded-pill" id="smoothScrollToTop">Explore all use cases</a>
           </div>
         </div>
       </section>
